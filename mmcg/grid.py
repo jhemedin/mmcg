@@ -66,7 +66,7 @@ def mmcg(radar, grid_shape, grid_limits, z_linear_interp=True,
 
         grid = pyart.map.grid_from_radars(
             radar, grid_shape, grid_limits, **grid_config)
-        if 'gate_id' in fields.keys():
+        if 'gate_id' in radar.fields.keys():
             if 'fields' in grid_config:
                 grid_config.pop('fields')
             if 'weighting_function' in grid_config:
@@ -77,7 +77,7 @@ def mmcg(radar, grid_shape, grid_limits, z_linear_interp=True,
             gate_data = grid_id.fields['gate_id']['data']
             grid.fields['gate_id']['data'] = gate_data
             grid.fields['gate_id'].update({
-                'comment', 'This gate id field has been mapped to a '
+                'comment': 'This gate id field has been mapped to a '
                            'Cartesian grid using nearest neighbor. This '
                            'may differ from the mapping method used '
                            'in the other fields'})
@@ -86,7 +86,7 @@ def mmcg(radar, grid_shape, grid_limits, z_linear_interp=True,
     else:
         grid = pyart.map.grid_from_radars(
             radar, grid_shape, grid_limits, **kwargs)
-        if 'gate_id' in fields.keys():
+        if 'gate_id' in radar.fields.keys():
             if 'fields' in kwargs:
                 kwargs.pop('fields')
             if 'weighting_function' in kwargs:
@@ -97,7 +97,7 @@ def mmcg(radar, grid_shape, grid_limits, z_linear_interp=True,
             gate_data = grid_id.fields['gate_id']['data']
             grid.fields['gate_id']['data'] = gate_data
             grid.fields['gate_id'].update({
-                'comment', 'This gate id field has been mapped to a '
+                'comment': 'This gate id field has been mapped to a '
                            'Cartesian grid using nearest neighbor. This '
                            'may differ from the mapping method used '
                            'in the other fields'})
